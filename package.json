@@ -57,8 +57,8 @@
     "@angular/forms": "5.2.9",
     "@angular/http": "5.2.9",
     "@angular/language-service": "5.2.9",
-    "@angular/platform-browser": "5.2.9",
-    "@angular/platform-browser-dynamic": "5.2.9",
+    "@angular/platform-browser": "^6.1.0",
+    "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "5.2.9",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
@@ -88,7 +88,11 @@
     "rxjs-compat": "^6.2.1",
     "ts-node": "~3.0.4",
     "tslint": "~5.3.2",
-    "typescript": "2.6.2",
+    "typescript": "3.2.4",
     "zone.js": "^0.8.25"
+  },
+  "dependencies": {
+    "tslib": "^1.9.3",
+    "yarn": "^1.15.2"
   }
 }

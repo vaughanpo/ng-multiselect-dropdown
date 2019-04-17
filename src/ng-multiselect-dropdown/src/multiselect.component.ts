@@ -16,7 +16,7 @@ export const DROPDOWN_CONTROL_VALUE_ACCESSOR: any = {
   useExisting: forwardRef(() => MultiSelectComponent),
   multi: true
 };
-const noop = () => {};
+const noop = () => { };
 
 @Component({
   selector: 'ng-multiselect-dropdown',
@@ -36,6 +36,7 @@ export class MultiSelectComponent implements ControlValueAccessor {
     singleSelection: false,
     idField: 'id',
     textField: 'text',
+    tooltipField: 'text',
     enableCheckAll: true,
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
@@ -86,9 +87,10 @@ export class MultiSelectComponent implements ControlValueAccessor {
           typeof item === 'string'
             ? new ListItem(item)
             : new ListItem({
-                id: item[this._settings.idField],
-                text: item[this._settings.textField]
-              })
+              id: item[this._settings.idField],
+              text: item[this._settings.textField],
+              tooltip: item[this._settings.tooltipField],
+            })
       );
     }
   }
@@ -117,7 +119,7 @@ export class MultiSelectComponent implements ControlValueAccessor {
     this.onFilterChange.emit($event);
   }
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) { }
 
   onItemClick($event: any, item: ListItem) {
     if (this.disabled) {
@@ -154,9 +156,10 @@ export class MultiSelectComponent implements ControlValueAccessor {
               typeof firstItem === 'string'
                 ? new ListItem(firstItem)
                 : new ListItem({
-                    id: firstItem[this._settings.idField],
-                    text: firstItem[this._settings.textField]
-                  })
+                  id: firstItem[this._settings.idField],
+                  text: firstItem[this._settings.textField],
+                  tooltip: firstItem[this._settings.tooltipField],
+                })
             ];
           }
         } catch (e) {
@@ -168,9 +171,10 @@ export class MultiSelectComponent implements ControlValueAccessor {
             typeof item === 'string'
               ? new ListItem(item)
               : new ListItem({
-                  id: item[this._settings.idField],
-                  text: item[this._settings.textField]
-                })
+                id: item[this._settings.idField],
+                text: item[this._settings.textField],
+                tooltip: item[this._settings.tooltipField],
+              })
         );
         if (this._settings.limitSelection > 0) {
           this.selectedItems = _data.splice(0, this._settings.limitSelection);
@@ -287,6 +291,7 @@ export class MultiSelectComponent implements ControlValueAccessor {
     const obj = {};
     obj[this._settings.idField] = val.id;
     obj[this._settings.textField] = val.text;
+    obj[this._settings.tooltipField] = val.tooltip;
     return obj;
   }
 
